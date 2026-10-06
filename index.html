@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Hangman Game PRO - A modern word guessing game built with HTML, CSS and Vanilla JavaScript."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Hangman Game</title>
+  </head>
+  <body>
+    <!-- ====================================================== -->
+    <!-- HEADER -->
+    <!-- ====================================================== -->
+
+    <header class="header">
+      <div class="header-wrapper">
+        <a href="#" class="logo">
+          <img src="images/logo-image.png" alt="logo hangman" />
+          <div class="logo-content">
+            <h1>Hangman Game <span>PRO</span></h1>
+            <p>Guess the word. Challenge your mind.</p>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a href="#" class="nav-link active" data-link="play">
+            <i class="bi bi-controller"></i>
+            Play</a
+          >
+          <a href="#" class="nav-link" data-link="stats">
+            <i class="bi bi-bar-chart-fill"></i>
+            Stats
+          </a>
+
+          <a href="#" class="nav-link" data-link="howToPlay">
+            <i class="bi bi-book"></i>
+            How to Play</a
+          >
+
+          <a href="#" class="nav-link" data-link="about">
+            <i class="bi bi-info-circle-fill"></i>
+            About</a
+          >
+        </nav>
+
+        <button
+          class="toggle-button"
+          id="toggleBtn"
+          type="button"
+          aria-label="Toggle theme"
+        >
+          <i class="bi bi-moon-fill"></i>
+          <span class="toggle-text">Dark Mode</span>
+          <span class="toggle-switch"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ====================================================== -->
+    <!-- MAIN -->
+    <!-- ====================================================== -->
+
+    <main>
+      <!-- ====================================================== -->
+      <!-- GAME AREA SECTION -->
+      <!-- ====================================================== -->
+
+      <section class="game-area-section" id="play">
+        <div class="game-area-wrapper">
+          <div class="game-image-box">
+            <div class="hangman-character" id="hangmanCharacter">
+              <div class="hangman-part hangman-head"></div>
+              <div class="hangman-part hangman-body"></div>
+              <div class="hangman-part hangman-arm hangman-arm-left"></div>
+              <div class="hangman-part hangman-arm hangman-arm-right"></div>
+              <div class="hangman-part hangman-leg hangman-leg-left"></div>
+              <div class="hangman-part hangman-leg hangman-leg-right"></div>
+            </div>
+          </div>
+
+          <div class="game-content">
+            <div class="category-badge">
+              <i class="bi bi-film"></i>
+              <span>Category:</span>
+              <strong id="categoryValue">Movies</strong>
+            </div>
+
+            <div class="hint-box">
+              <div class="hint-icon">
+                <i class="bi bi-lightbulb-fill"></i>
+              </div>
+
+              <div class="hint-content">
+                <h3>Hint:</h3>
+                <p id="hintText">A young wizard attends a magical school.</p>
+              </div>
+            </div>
+
+            <div class="word-display" id="wordDisplay">
+              <span class="letter-box">H</span>
+              <span class="letter-box"></span>
+              <span class="letter-box"></span>
+              <span class="letter-box"></span>
+              <span class="letter-box"></span>
+              <span class="letter-box">P</span>
+              <span class="letter-box"></span>
+              <span class="letter-box"></span>
+              <span class="letter-box"></span>
+              <span class="letter-box"></span>
+            </div>
+
+            <div class="wrong-guesses-row">
+              <div class="wrong-guesses-info">
+                <i class="bi bi-heart-fill"></i>
+
+                <p>
+                  Wrong guesses:
+                  <strong id="wrongGuessesValue">3 / 6</strong>
+                </p>
+              </div>
+
+              <div class="wrong-guesses-dots" id="wrongGuessesDots">
+                <span class="wrong-dot active"></span>
+                <span class="wrong-dot active"></span>
+                <span class="wrong-dot active"></span>
+                <span class="wrong-dot"></span>
+                <span class="wrong-dot"></span>
+                <span class="wrong-dot"></span>
+              </div>
+            </div>
+
+            <div class="guessed-section">
+              <p class="guessed-title">Already guessed:</p>
+
+              <div class="guessed-letters" id="guessedLetters">
+                <span>A</span>
+                <span>E</span>
+                <span>I</span>
+                <span>O</span>
+                <span>R</span>
+                <span>S</span>
+                <span>T</span>
+              </div>
+            </div>
+
+            <div class="keyboard" id="keyboard">
+              <button class="keyboard-key" type="button" data-letter="A">
+                A
+              </button>
+              <button class="keyboard-key" type="button" data-letter="B">
+                B
+              </button>
+              <button class="keyboard-key" type="button" data-letter="C">
+                C
+              </button>
+              <button class="keyboard-key" type="button" data-letter="D">
+                D
+              </button>
+              <button class="keyboard-key" type="button" data-letter="E">
+                E
+              </button>
+              <button class="keyboard-key" type="button" data-letter="F">
+                F
+              </button>
+              <button class="keyboard-key" type="button" data-letter="G">
+                G
+              </button>
+              <button class="keyboard-key" type="button" data-letter="H">
+                H
+              </button>
+              <button class="keyboard-key" type="button" data-letter="I">
+                I
+              </button>
+
+              <button class="keyboard-key" type="button" data-letter="J">
+                J
+              </button>
+              <button class="keyboard-key" type="button" data-letter="K">
+                K
+              </button>
+              <button class="keyboard-key" type="button" data-letter="L">
+                L
+              </button>
+              <button class="keyboard-key" type="button" data-letter="M">
+                M
+              </button>
+              <button class="keyboard-key" type="button" data-letter="N">
+                N
+              </button>
+              <button class="keyboard-key" type="button" data-letter="O">
+                O
+              </button>
+              <button class="keyboard-key" type="button" data-letter="P">
+                P
+              </button>
+              <button class="keyboard-key" type="button" data-letter="Q">
+                Q
+              </button>
+              <button class="keyboard-key" type="button" data-letter="R">
+                R
+              </button>
+
+              <button class="keyboard-key" type="button" data-letter="S">
+                S
+              </button>
+              <button class="keyboard-key" type="button" data-letter="T">
+                T
+              </button>
+              <button class="keyboard-key" type="button" data-letter="U">
+                U
+              </button>
+              <button class="keyboard-key" type="button" data-letter="V">
+                V
+              </button>
+              <button class="keyboard-key" type="button" data-letter="W">
+                W
+              </button>
+              <button class="keyboard-key" type="button" data-letter="X">
+                X
+              </button>
+              <button class="keyboard-key" type="button" data-letter="Y">
+                Y
+              </button>
+              <button class="keyboard-key" type="button" data-letter="Z">
+                Z
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================== -->
+      <!-- GAME STATS SECTION -->
+      <!-- ====================================================== -->
+
+      <section class="game-stats-section">
+        <div class="game-stats-wrapper">
+          <div class="game-stats-header">
+            <div class="game-stats-heading">
+              <i class="bi bi-bar-chart-fill"></i>
+              Game Stats
+            </div>
+
+            <button
+              class="reset-stats-button"
+              id="resetStatsBtn"
+              type="button"
+              title="Reset all statistics"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i>
+              Reset Stats
+            </button>
+          </div>
+
+          <div class="game-stats-boxes">
+            <div class="game-stats-box green">
+              <i class="bi bi-trophy-fill green"></i>
+
+              <div class="game-stat-content">
+                <span id="winsValue">12</span>
+                <p>Wins</p>
+              </div>
+            </div>
+
+            <div class="game-stats-box red">
+              <i class="bi bi-x-circle-fill red"></i>
+
+              <div class="game-stat-content">
+                <span id="lossesValue">5</span>
+                <p>Losses</p>
+              </div>
+            </div>
+
+            <div class="game-stats-box yellow">
+              <i class="bi bi-fire yellow"></i>
+
+              <div class="game-stat-content">
+                <span id="currentStreakValue">4</span>
+                <p>Current Streak</p>
+              </div>
+            </div>
+
+            <div class="game-stats-box purple">
+              <i class="bi bi-bar-chart-steps purple"></i>
+
+              <div class="game-stat-content">
+                <span id="difficultyValue">Medium</span>
+                <p>Difficulty</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================== -->
+      <!-- GAME CONTROLS SECTION -->
+      <!-- ====================================================== -->
+      <section class="game-controls-section">
+        <div class="game-controls-wrapper">
+          <div class="game-controls-heading">
+            <i class="bi bi-gear-fill"></i>
+            Game Controls
+          </div>
+
+          <button
+            class="game-controls-button new-game-button"
+            id="newGameBtn"
+            type="button"
+          >
+            <i class="bi bi-play-fill"></i>
+
+            <span class="button-content">
+              <span class="button-title">New Game</span>
+              <span class="button-description">Get a new word</span>
+            </span>
+          </button>
+
+          <button
+            class="game-controls-button hint-button"
+            id="hintBtn"
+            type="button"
+          >
+            <i class="bi bi-lightbulb-fill"></i>
+
+            <span class="button-content">
+              <span class="button-title">Use Hint</span>
+              <span class="button-description">Reveal a helpful hint</span>
+            </span>
+
+            <span class="button-hint-content">
+              <span id="hintCountValue">1 left</span>
+            </span>
+          </button>
+
+          <button
+            class="game-controls-button reset-game-button"
+            id="resetGameBtn"
+            type="button"
+          >
+            <i class="bi bi-arrow-clockwise"></i>
+
+            <span class="button-content">
+              <span class="button-title">Reset Game</span>
+              <span class="button-description"
+                >Clear progress and start over</span
+              >
+            </span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ====================================================== -->
+    <!-- FOOTER SECTION -->
+    <!-- ====================================================== -->
+
+    <footer class="footer">
+      <div class="footer-wrapper">
+        <div class="footer-left">
+          <div class="footer-tip">
+            <i class="bi bi-star-fill"></i>
+            Pro Tip:
+          </div>
+          <p>
+            Think about common letters, movie titles, and word patterns. You can
+            do it!
+          </p>
+        </div>
+
+        <div class="footer-right">
+          <i class="bi bi-heart-fill"></i>
+          <p>Good games make a brighter mind.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
