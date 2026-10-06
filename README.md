@@ -6,7 +6,7 @@ Test your vocabulary, guess hidden words, and challenge yourself to win before t
 
 Built with **HTML5, CSS3, and Vanilla JavaScript**, featuring a responsive interface, multiple word categories, interactive keyboard, game statistics, and persistent data storage.
 
-**[🎮 Live Demo]()** · **[💻 GitHub Profile](https://github.com/JohnYisBackk)** · **[🌐 Portfolio](https://samueljahn.sk)**
+**[🎮 Live Demo](https://johnyisbackk.github.io/js-hangman-game/)** · **[💻 GitHub Profile](https://github.com/JohnYisBackk)** · **[🌐 Portfolio](https://samueljahn.sk)**
 
 ---
 
